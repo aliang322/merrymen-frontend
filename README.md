@@ -1,7 +1,12 @@
-# Vue 3 + Vite
+# merrymen-frontend : SSO Branch
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+This branch has a Vue project with Google authentication/SSO functionality.
 
-## Recommended IDE Setup
+## Installation
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+1. (Optional) Install conda and create a new environment
+2. Install Node.js and npm
+3. Clone the repo and run 'npm install' in the root
+4. Run 'npm run dev' to host frontend locally
+5. Run 'npm run build' to creat dist folder
+6. The contents of dist/ can be deployed to an S3 bucket for static web hosting
