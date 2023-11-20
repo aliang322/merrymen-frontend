@@ -1,57 +1,76 @@
+<!-- App.vue -->
 <template>
-	<div class="app">
-		<!-- Sidebar -->
-		<Sidebar />
+  <div class="app">
+    <!-- Header -->
+    <header class="header">
+      <!-- <img src="@/assets/logo.png" alt="Logo" class="logo" /> -->
+      <h1 class="app-title">Merry Men Trading</h1>
+    </header>
 
-		<!-- Content -->
-		<router-view />
-	</div>
+    <!-- Main Content -->
+    <main>
+      <!-- Login -->
+      <Login />
+
+      <!-- Display Stock Data -->
+      <div v-if="user.loggedIn" class="stock-viewer">
+        <!-- Stock Viewer Component -->
+        <StockViewer />
+      </div>
+      <!-- <div v-else class="login-prompt">
+        <p>Please log in to view stock data.</p>
+      </div> -->
+    </main>
+  </div>
 </template>
 
 <script setup>
-import Sidebar from './components/Sidebar.vue'
+import Login from "./components/Login.vue";
+import StockViewer from "./components/StockViewer.vue";
+import { reactive, provide } from 'vue';
+
+const user = reactive({
+  loggedIn: false,
+  userEmail: null, // Added userEmail property
+  setLoggedIn: () => {
+    user.loggedIn = true;
+  },
+});
+
+// Provide the user object to the entire application
+provide('user', user);
 </script>
 
 <style lang="scss">
-:root {
-	--primary: #4ade80;
-	--primary-alt: #22c55e;
-	--grey: #64748b;
-	--dark: #1e293b;
-	--dark-alt: #334155;
-	--light: #f1f5f9;
-	--sidebar-width: 300px;
+/* Your existing styles ... */
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background-color: var(--primary);
+  color: #fff;
 }
 
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	font-family: 'Fira sans', sans-serif;
+.logo {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
 }
 
-body {
-	background: var(--light);
+.app-title {
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
-button {
-	cursor: pointer;
-	appearance: none;
-	border: none;
-	outline: none;
-	background: none;
+.stock-viewer {
+  margin-top: 2rem;
+  /* Add more styling for stock viewer components */
 }
 
-.app {
-	display: flex;
-
-	main {
-		flex: 1 1 0;
-		padding: 2rem;
-
-		@media (max-width: 1024px) {
-			padding-left: 6rem;
-		}
-	}
+.login-prompt {
+  margin-top: 2rem;
+  text-align: center;
 }
 </style>
