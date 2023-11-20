@@ -16,6 +16,9 @@
 
     <!-- Main Content -->
     <main @scroll="handleScroll">
+      <div class="hero">
+        <h1 class="tagline">Stock Screener</h1>
+      </div>
       <!-- Login -->
       <!-- <Login /> -->
 
@@ -86,7 +89,24 @@ body {
   margin: 0; /* Remove default body margin */
 }
 
-.navbar {
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align items to the start (left) */
+  justify-content: flex-start; /* Align content to the start (top) */
+  height: 100vh; /* Set the height of the hero to the full viewport height */
+}
+
+.hero .tagline {
+  padding-top: 10vh;
+  font-size: 80px;
+  font-family: "gg Sans";
+  text-align: left;
+  color: var(--primary-alt);
+  margin-top: 20px; /* Adjust the margin as needed */
+}
+
+.navbar { 
   color-scheme: light;
   font-size: 18px;
   background-color: var(--light);
@@ -103,7 +123,7 @@ body {
 }
 
 .navbar-scrolled {
-  background-color: rgba(241, 245, 249, 0.9); /* Transparent background color after scrolling */
+  background-color: rgba(241, 245, 249, 0.1); /* Transparent background color after scrolling */
 }
 
 .app-title {
@@ -165,11 +185,6 @@ body {
 
 .button-nav.router-link-exact-active::before {
   background-color: var(--primary-alt); /* Set the underline color for the active link */
-}
-
-
-main {
-  margin-top: 4rem; /* Adjusted margin to provide space below the fixed navbar */
 }
 
 .login-prompt {
