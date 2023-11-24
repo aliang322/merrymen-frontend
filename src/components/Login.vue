@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts">
-import { ref, onMounted, inject } from 'vue';
+import { ref, onMounted, inject, onBeforeUnmount } from 'vue';
 import { decodeCredential } from 'vue3-google-login';
 import type { ButtonConfig } from '../assets/buttonConfig.ts'
 
@@ -40,8 +40,8 @@ export default {
 
       // Assuming the JWT payload includes the user email
       user.loggedIn = true;
-      user.userEmail = userData.email; // Replace with the actual property from the JWT payload
-      // user.userName = userData.name;
+      user.userEmail = userData.email;
+      localStorage.setItem('user', JSON.stringify(user));
 
       // You can perform additional actions based on the login response
       console.log("Handle the Google login response", response);  
@@ -49,9 +49,14 @@ export default {
     };
 
     onMounted(() => {
-      // You might want to check the user's login status on component mount
+      // May want to check the user's login status on component mount
       // and set the isLoggedIn and userEmail accordingly
-      // For example, you can use a global state management solution or an authentication service
+      // For example, use a global state management solution or an authentication service
+    });
+
+    onBeforeUnmount(() => {
+      // Save the user object to localStorage before the component is unmounted
+      localStorage.setItem('user', JSON.stringify(user));
     });
 
     return { user, buttonConfig, handleGoogleLogin };

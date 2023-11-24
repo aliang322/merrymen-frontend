@@ -36,8 +36,20 @@
 
 <script setup>
 import Login from "./components/Login.vue";
+import { ref, onMounted, onBeforeUnmount, provide, reactive } from 'vue';
+
 // import StockViewer from "./components/StockViewer.vue";
-import { ref, reactive, provide } from 'vue';
+//import { ref, reactive, provide } from 'vue';
+
+// const user = reactive({
+//   loggedIn: false,
+//   userEmail: null,
+//   setLoggedIn: () => {
+//     user.loggedIn = true;
+//   },
+// });
+
+// provide('user', user);
 
 const user = reactive({
   loggedIn: false,
@@ -47,7 +59,25 @@ const user = reactive({
   },
 });
 
+// Load user data from localStorage on component mount
+onMounted(() => {
+  const storedUser = localStorage.getItem('user');
+  if (storedUser) {
+    Object.assign(user, JSON.parse(storedUser));
+  }
+});
+
+// Save user data to localStorage on component unmount
+onBeforeUnmount(() => {
+  localStorage.setItem('user', JSON.stringify(user));
+});
+
+// Provide user for injection
 provide('user', user);
+
+// const updateUser = (newUser) => {
+//   Object.assign(user, newUser);
+// };
 
 const scrolled = ref(false);
 
