@@ -48,11 +48,11 @@ export default {
       console.log("User data from JWT payload", userData);
     };
 
-    onMounted(() => {
-      // May want to check the user's login status on component mount
-      // and set the isLoggedIn and userEmail accordingly
-      // For example, use a global state management solution or an authentication service
-    });
+    // onMounted(() => {
+    //   // May want to check the user's login status on component mount
+    //   // and set the isLoggedIn and userEmail accordingly
+    //   // For example, use a global state management solution or an authentication service
+    // });
 
     onBeforeUnmount(() => {
       // Save the user object to localStorage before the component is unmounted

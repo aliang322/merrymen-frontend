@@ -17,7 +17,7 @@
     <!-- Main Content -->
     <main @scroll="handleScroll">
       <div class="hero">
-        <h1 class="tagline">Stock Screener</h1>
+        <h1 class="tagline">persistent localStorage sso</h1>
       </div>
       <!-- Login -->
       <!-- <Login /> -->
@@ -65,6 +65,8 @@ onMounted(() => {
   if (storedUser) {
     Object.assign(user, JSON.parse(storedUser));
   }
+  console.log("Loading from local storage:", user); 
+
 });
 
 // Save user data to localStorage on component unmount
