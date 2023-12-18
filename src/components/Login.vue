@@ -33,6 +33,24 @@ export default {
       shape: "pill"
     });
 
+    //define custom middleware
+    const middleware_upon_auth = (user, response) => {
+      if(user.loggedIn){
+        //middleware logging upon user authentication
+        //user email for logging the user that just logged in to their account
+        console.log("Login was successful for the following user")
+        console.log("User Email")
+        console.log(user.userEmail)
+        //JWT token logging for sharing this token with the rest of the API's
+        console.log("User JWT Token")
+        console.log(response.credential)
+      }
+      else{
+        console.log("User login attempt was unsuccessful for the following user")
+        console.log(user.userEmail)
+      }
+    }
+
     const handleGoogleLogin = (response) => {
       // Assuming the response indicates a successful login
       // Decode the credential to retrieve the JWT payload
@@ -42,13 +60,7 @@ export default {
       user.loggedIn = true;
       user.userEmail = userData.email;
       localStorage.setItem('user', JSON.stringify(user));
-      //middleware logging upon user authentication
-      //user email for logging the user that just logged in to their account
-      console.log("User Email")
-      console.log(user.userEmail)
-      //JWT token logging for sharing this token with the rest of the API's
-      console.log("User JWT Token")
-      console.log(response.credential)
+      middleware_upon_auth(user, response)
 
       // You can perform additional actions based on the login response
       console.log("Handle the Google login response", response);  
