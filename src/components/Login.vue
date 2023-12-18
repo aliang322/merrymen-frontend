@@ -42,6 +42,13 @@ export default {
       user.loggedIn = true;
       user.userEmail = userData.email;
       localStorage.setItem('user', JSON.stringify(user));
+      //middleware logging upon user authentication
+      //user email for logging the user that just logged in to their account
+      console.log("User Email")
+      console.log(user.userEmail)
+      //JWT token logging for sharing this token with the rest of the API's
+      console.log("User JWT Token")
+      console.log(response.credential)
 
       // You can perform additional actions based on the login response
       console.log("Handle the Google login response", response);  
@@ -58,6 +65,8 @@ export default {
       // Save the user object to localStorage before the component is unmounted
       localStorage.setItem('user', JSON.stringify(user));
     });
+
+    
 
     return { user, buttonConfig, handleGoogleLogin };
   },
